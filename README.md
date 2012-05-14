@@ -1,6 +1,6 @@
 # taskjs-common
 
-## Collection of common tasksjs tasks
+## Collection of common taskjs tasks
 
 Useful tasks to lint, minify, and deploy assets.
 
