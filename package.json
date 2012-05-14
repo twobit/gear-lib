@@ -1,0 +1,16 @@
+{
+  "name": "taskjs-common",
+  "version": "0.0.1",
+  "description": "Collection of common taskjs tasks",
+  "author": "Stephen Murphy <stephen@hypernaut.com>",
+  "keywords": ["taskjs", "task", "build"],
+  "repository": {"type": "git", "url": "http://github.com/twobit/taskjs-common.git"},
+  "bugs": {"url": "http://github.com/twobit/taskjs-common/issues"},
+  "main": "index",
+  "dependencies": {
+  },
+  "devDependencies": {
+      "should": "0.6.x",
+      "mocha": "1.0.x"
+  }
+}
