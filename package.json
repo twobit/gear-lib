@@ -1,11 +1,11 @@
 {
-  "name": "taskjs-common",
+  "name": "taskjs-lib",
   "version": "0.0.1",
   "description": "Collection of common taskjs tasks",
   "author": "Stephen Murphy <stephen@hypernaut.com>",
   "keywords": ["taskjs", "task", "build"],
-  "repository": {"type": "git", "url": "http://github.com/twobit/taskjs-common.git"},
-  "bugs": {"url": "http://github.com/twobit/taskjs-common/issues"},
+  "repository": {"type": "git", "url": "http://github.com/twobit/taskjs-lib.git"},
+  "bugs": {"url": "http://github.com/twobit/taskjs-lib/issues"},
   "main": "index",
   "dependencies": {
     "jslint": "0.1.x",

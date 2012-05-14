@@ -1,8 +1,14 @@
-# taskjs-common
+# taskjs-lib
 
 ## Collection of common taskjs tasks
 
 Useful tasks to lint, minify, and deploy assets.
+
+## Installation
+
+```
+npm install taskjs-lib
+```
 
 ## Quick Examples
 
