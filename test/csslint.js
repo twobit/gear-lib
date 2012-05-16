@@ -1,6 +1,6 @@
-var csslint = require('../lib/csslint').csslint,
+var csslint = require('../lib/csslint').csslint.fn,
     fixtures = {
-        css: [{content: '%%%%'}]
+        css: {body: '%%%%'}
     };
 
 describe('csslint()', function() {

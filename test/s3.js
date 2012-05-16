@@ -1,4 +1,4 @@
-var s3 = require('../lib/s3').s3,
+var s3 = require('../lib/s3').s3.fn,
     fixtures = {
         options: {
             name: 'test.js',
@@ -8,7 +8,7 @@ var s3 = require('../lib/s3').s3,
                 bucket: 'taskjs'
             }
         },
-        js: [{content: 'function   test(  x )  {console.log(x);;;;}'}]
+        js: {body: 'function   test(  x )  {console.log(x);;;;}'}
     };
 
 describe('s3()', function() {

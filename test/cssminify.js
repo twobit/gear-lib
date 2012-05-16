@@ -1,6 +1,6 @@
-var cssminify = require('../lib/cssminify').cssminify,
+var cssminify = require('../lib/cssminify').cssminify.fn,
     fixtures = {
-        css: [{content: ' .bar { display: none;  } '}]
+        css: {body: ' .bar { display: none;  } '}
     };
 
 describe('cssminify()', function() {
