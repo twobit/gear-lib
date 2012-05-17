@@ -5,8 +5,7 @@ var cssminify = require('../lib/cssminify').cssminify.fn,
 
 describe('cssminify()', function() {
     it('should minify css', function(done) {
-        cssminify({}, fixtures.css, console, function(err, results) {
-            console.log(results);
+        cssminify({}, fixtures.css, function(err, results) {
             done(err);
         });
     });

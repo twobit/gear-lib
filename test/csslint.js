@@ -5,8 +5,7 @@ var csslint = require('../lib/csslint').csslint.fn,
 
 describe('csslint()', function() {
     it('should lint css', function(done) {
-        csslint({}, fixtures.css, console, function(err, results) {
-            console.log(results);
+        csslint({}, fixtures.css, function(err, results) {
             done(err);
         });
     });

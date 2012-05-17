@@ -5,8 +5,7 @@ var jsminify = require('../lib/jsminify').jsminify.fn,
 
 describe('jsminify()', function() {
     it('should minify js', function(done) {
-        jsminify({}, fixtures.js, console, function(err, results) {
-            console.log(results);
+        jsminify({}, fixtures.js, function(err, results) {
             done(err);
         });
     });

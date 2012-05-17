@@ -5,8 +5,7 @@ var jslint = require('../lib/jslint').jslint.fn,
 
 describe('jslint()', function() {
     it('should lint js', function(done) {
-        jslint({}, fixtures.js, console, function(err, results) {
-            console.log(results);
+        jslint({}, fixtures.js, function(err, results) {
             done(err);
         });
     });

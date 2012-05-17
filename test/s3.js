@@ -13,8 +13,7 @@ var s3 = require('../lib/s3').s3.fn,
 
 describe('s3()', function() {
     it('should deploy to s3', function(done) {
-        s3(fixtures.options, fixtures.js, console, function(err, results) {
-            console.log(results);
+        s3(fixtures.options, fixtures.js, function(err, results) {
             done(err);
         });
     });
