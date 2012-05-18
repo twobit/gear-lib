@@ -1,6 +1,6 @@
 {
   "name": "gear-lib",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Collection of common gear tasks",
   "author": "Stephen Murphy <stephen@hypernaut.com>",
   "keywords": ["gear", "task", "build"],
