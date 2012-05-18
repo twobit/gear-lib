@@ -5,7 +5,7 @@ var s3 = require('../lib/s3').s3.fn,
             client: {
                 key: 'AKIAJ6RILQHB3LDITXYQ',
                 secret: '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',
-                bucket: 'taskjs'
+                bucket: 'gear'
             }
         },
         js: {body: 'function   test(  x )  {console.log(x);;;;}'}

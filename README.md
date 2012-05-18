@@ -1,13 +1,13 @@
-# taskjs-lib
+# gear-lib
 
-## Collection of common taskjs tasks
+## Collection of common gear tasks
 
 Useful tasks to lint, minify, and deploy assets.
 
 ## Installation
 
 ```
-npm install taskjs-lib
+npm install gear-lib
 ```
 
 ## Quick Examples
@@ -15,7 +15,7 @@ npm install taskjs-lib
 ### Deploy to S3
 
 ```
-new taskjs.Queue()
+gear.queue()
  .files(['foo.js', 'bar.js', 'baz.js']
  .concat()
  .jslint()
