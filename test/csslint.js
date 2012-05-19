@@ -1,4 +1,5 @@
-var csslint = require('../lib/csslint').csslint.fn,
+var should = require('should'),
+    csslint = require('../lib/csslint').csslint.fn,
     fixtures = {
         css: {body: '%%%%'}
     };
@@ -6,6 +7,7 @@ var csslint = require('../lib/csslint').csslint.fn,
 describe('csslint()', function() {
     it('should lint css', function(done) {
         csslint({}, fixtures.css, function(err, results) {
+            //should.exist(err);
             done(err);
         });
     });

@@ -17,4 +17,6 @@ describe('s3()', function() {
             done(err);
         });
     });
+
+    it('should replace {checksum} in filename');
 });
