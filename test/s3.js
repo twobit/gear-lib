@@ -1,7 +1,7 @@
 var s3 = require('../lib/s3').s3.fn,
     fixtures = {
         options: {
-            name: 'test.js',
+            file: 'test.js',
             client: {
                 key: 'AKIAJ6RILQHB3LDITXYQ',
                 secret: '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',

@@ -16,11 +16,15 @@ npm install gear-lib
 
 ```
 gear.queue()
- .files(['foo.js', 'bar.js', 'baz.js']
+ .load(['foo.js', 'bar.js', 'baz.js'])
  .concat()
  .jslint()
  .jsminify()
- .s3()
+ .s3({file: 'foobarbaz.js', client: {
+    key: '<key>',
+    secret: '<secret>',
+    bucket: 'gearjs'
+ }})
  .run();
 ```
 
@@ -41,6 +45,10 @@ gear.queue()
 
 Lint Javascript files.
 
+__Arguments__
+
+ * options - Options for JSLint.
+
 __Example__
 
 ```
@@ -54,6 +62,10 @@ __Example__
 
 Minify Javascript files.
 
+__Arguments__
+
+ * options - Options for uglify-js.
+
 __Example__
 
 ```
@@ -66,6 +78,10 @@ __Example__
 ### csslint()
 
 Lint CSS files.
+
+__Arguments__
+
+ * options - Options for CSSLint.
 
 __Example__
 
@@ -93,8 +109,19 @@ __Example__
 
 Deploy file to S3.
 
+__Arguments__
+
+ * options.file - Filename to write to S3.
+ * options.client.key - S3 key.
+ * options.client.secret - S3 secret.
+ * options.client.bucket - S3 bucket.
+
 __Example__
 
 ```
-.s3()
+ .s3({file: 'foobarbaz.js', client: {
+    key: '<key>',
+    secret: '<secret>',
+    bucket: 'gearjs'
+ }})
 ```
