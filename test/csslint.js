@@ -1,5 +1,5 @@
 var should = require('should'),
-    csslint = require('../lib/csslint').csslint.fn,
+    csslint = require('../lib/csslint').csslint,
     fixtures = {
         css: {body: '%%%%'}
     };

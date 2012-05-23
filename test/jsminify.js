@@ -1,4 +1,4 @@
-var jsminify = require('../lib/jsminify').jsminify.fn,
+var jsminify = require('../lib/jsminify').jsminify,
     fixtures = {
         js: {body: 'function   test(  x )  {console.log(x);;;;}'}
     };

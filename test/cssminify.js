@@ -1,4 +1,4 @@
-var cssminify = require('../lib/cssminify').cssminify.fn,
+var cssminify = require('../lib/cssminify').cssminify,
     fixtures = {
         css: {body: ' .bar { display: none;  } '}
     };

@@ -1,4 +1,4 @@
-var s3 = require('../lib/s3').s3.fn,
+var s3 = require('../lib/s3').s3,
     fixtures = {
         options: {
             file: 'test.js',

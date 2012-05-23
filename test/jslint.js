@@ -1,4 +1,4 @@
-var jslint = require('../lib/jslint').jslint.fn,
+var jslint = require('../lib/jslint').jslint,
     fixtures = {
         js: {body: '^^^^'}
     };
