@@ -1,6 +1,6 @@
 # gear-lib
 
-## Collection of common [gear](/twobit/gear) tasks
+## Collection of common [Gear.js](/twobit/gear) tasks
 
 Useful tasks to lint, minify, and deploy assets.
 
