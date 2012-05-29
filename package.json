@@ -1,11 +1,11 @@
 {
   "name": "gear-lib",
-  "version": "0.1.3",
-  "description": "Collection of common gear tasks",
+  "version": "0.1.4",
+  "description": "Collection of common Gear.js tasks",
   "author": "Stephen Murphy <stephen@hypernaut.com>",
   "keywords": ["gear", "task", "build"],
-  "repository": {"type": "git", "url": "http://github.com/twobit/gear-lib.git"},
-  "bugs": {"url": "http://github.com/twobit/gear-lib/issues"},
+  "repository": {"type": "git", "url": "http://github.com/yahoo/gear-lib.git"},
+  "bugs": {"url": "http://github.com/yahoo/gear-lib/issues"},
   "main": "index",
   "dependencies": {
       "jslint": "0.1.x",
