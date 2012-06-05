@@ -6,15 +6,15 @@ Useful tasks to lint, minify, and deploy assets.
 
 ## Installation
 
-```
-npm install gear-lib
+```bash
+$ npm install gear-lib
 ```
 
 ## Quick Examples
 
 ### Deploy to S3
 
-```
+```javascript
 gear.queue()
  .load(['foo.js', 'bar.js', 'baz.js'])
  .concat()
@@ -51,7 +51,7 @@ __Arguments__
 
 __Example__
 
-```
+```javascript
 .jslint()
 ```
 
@@ -68,7 +68,7 @@ __Arguments__
 
 __Example__
 
-```
+```javascript
 .jsminify()
 ```
 
@@ -85,7 +85,7 @@ __Arguments__
 
 __Example__
 
-```
+```javascript
 .csslint()
 ```
 
@@ -98,7 +98,7 @@ Minify CSS files.
 
 __Example__
 
-```
+```javascript
 .cssminify()
 ```
 
@@ -118,7 +118,7 @@ __Arguments__
 
 __Example__
 
-```
+```javascript
  .s3({file: 'foobarbaz.js', client: {
     key: '<key>',
     secret: '<secret>',
