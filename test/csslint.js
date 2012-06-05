@@ -1,7 +1,8 @@
 var should = require('should'),
+    Blob = require('gear').Blob,
     csslint = require('../lib/csslint').csslint,
     fixtures = {
-        css: {body: '%%%%'}
+        css: new Blob(['%%%%'])
     };
 
 describe('csslint()', function() {

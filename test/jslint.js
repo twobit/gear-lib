@@ -1,6 +1,7 @@
-var jslint = require('../lib/jslint').jslint,
+var Blob = require('gear').Blob,
+    jslint = require('../lib/jslint').jslint,
     fixtures = {
-        js: {body: '^^^^'}
+        js: new Blob(['^^^^'])
     };
 
 describe('jslint()', function() {

@@ -1,6 +1,7 @@
-var cssminify = require('../lib/cssminify').cssminify,
+var Blob = require('gear').Blob,
+    cssminify = require('../lib/cssminify').cssminify,
     fixtures = {
-        css: {body: ' .bar { display: none;  } '}
+        css: new Blob([' .bar { display: none;  } '])
     };
 
 describe('cssminify()', function() {

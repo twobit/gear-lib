@@ -1,4 +1,5 @@
-var s3 = require('../lib/s3').s3,
+var Blob = require('gear').Blob,
+    s3 = require('../lib/s3').s3,
     fixtures = {
         options: {
             file: 'test.js',
@@ -8,7 +9,7 @@ var s3 = require('../lib/s3').s3,
                 bucket: 'gearjs'
             }
         },
-        js: {body: 'function   test(  x )  {console.log(x);;;;}'}
+        js: new Blob(['function   test(  x )  {console.log(x);;;;}'])
     };
 
 describe('s3()', function() {
