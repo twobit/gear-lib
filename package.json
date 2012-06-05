@@ -1,6 +1,6 @@
 {
   "name": "gear-lib",
-  "version": "0.1.4",
+  "version": "0.3.0",
   "description": "Collection of common Gear.js tasks",
   "author": "Stephen Murphy <stephen@hypernaut.com>",
   "keywords": ["gear", "task", "build"],
@@ -8,7 +8,7 @@
   "bugs": {"url": "http://github.com/yahoo/gear-lib/issues"},
   "main": "index",
   "dependencies": {
-      "gear": "0.2.x",
+      "gear": "0.3.x",
       "jslint": "0.1.x",
       "uglify-js": "1.2.x",
       "csslint": "0.9.x",
