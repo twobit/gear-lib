@@ -9,7 +9,7 @@ var Blob = require('gear').Blob,
                 bucket: 'gearjs'
             }
         },
-        js: new Blob(['function   test(  x )  {console.log(x);;;;}'])
+        js: new Blob('function   test(  x )  {console.log(x);;;;}')
     };
 
 describe('s3()', function() {
