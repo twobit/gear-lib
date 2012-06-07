@@ -2,7 +2,7 @@ var Blob = require('gear').Blob,
     s3 = require('../lib/s3').s3,
     fixtures = {
         options: {
-            file: 'test.js',
+            name: 'test.js',
             client: {
                 key: 'AKIAJ6RILQHB3LDITXYQ',
                 secret: '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',
