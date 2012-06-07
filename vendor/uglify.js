@@ -1,3 +1,7 @@
+if (typeof exports === 'undefined') {
+    this.uglify = {};
+}
+
 (function(exports) {
 /***********************************************************************
 
@@ -1361,7 +1365,7 @@ exports.is_alphanumeric_char = is_alphanumeric_char;
 exports.set_logger = function(logger) {
         warn = logger;
 };
-})(typeof exports === 'undefined' ? this.parser = {} : exports);
+})(typeof exports === 'undefined' ? this.uglify.parser = {} : exports);
 
 (function(exports) {
 /***********************************************************************
@@ -1424,7 +1428,7 @@ exports.set_logger = function(logger) {
 
  ***********************************************************************/
 
-var jsp = typeof require === 'undefined' ? this.parser : require("./parse-js"),
+var jsp = typeof require === 'undefined' ? this.uglify.parser : require("./parse-js"),
     slice = jsp.slice,
     member = jsp.member,
     PRECEDENCE = jsp.PRECEDENCE,
@@ -1786,7 +1790,7 @@ function ast_add_scope(ast) {
                 var is_defun = this[0] == "defun";
                 return [ this[0], is_defun ? define(name, "defun") : name, args, with_new_scope(function(){
                         if (!is_defun) define(name, "lambda");
-                        MAP(args, function(name){ define(name, "arg") });
+                        MAP(args, function(name){ define(name, "arg"); });
                         return MAP(body, walk);
                 })];
         };
@@ -1810,7 +1814,7 @@ function ast_add_scope(ast) {
                 var ret = w.with_walkers({
                         "function": _lambda,
                         "defun": _lambda,
-                        "label": function(name, stat) { current_scope.labels.define(name) },
+                        "label": function(name, stat) { current_scope.labels.define(name); },
                         "break": _breacont,
                         "continue": _breacont,
                         "with": function(expr, block) {
@@ -1923,7 +1927,7 @@ function ast_mangle(ast, options) {
                         }
                 }
                 body = with_scope(body.scope, function(){
-                        args = MAP(args, function(name){ return get_mangled(name) });
+                        args = MAP(args, function(name){ return get_mangled(name); });
                         return MAP(body, walk);
                 }, extra);
                 return [ this[0], name, args, body ];
@@ -2256,9 +2260,9 @@ function prepare_ifs(ast) {
 function for_side_effects(ast, handler) {
         var w = ast_walker(), walk = w.walk;
         var $stop = {}, $restart = {};
-        function stop() { throw $stop };
-        function restart() { throw $restart };
-        function found(){ return handler.call(this, this, w, stop, restart) };
+        function stop() { throw $stop; };
+        function restart() { throw $restart; };
+        function found(){ return handler.call(this, this, w, stop, restart); };
         function unary(op) {
                 if (op == "++" || op == "--")
                         return found.apply(this, arguments);
@@ -2742,7 +2746,7 @@ function ast_squeeze(ast, options) {
                                 ret = best_of(ret, negate(expr));
                         return when_constant(ret, function(ast, val){
                                 return walk(ast); // it's either true or false, so minifies to !0 or !1
-                        }, function() { return ret });
+                        }, function() { return ret; });
                 },
                 "name": function(name) {
                         switch (name) {
@@ -2758,7 +2762,7 @@ function ast_squeeze(ast, options) {
                         if (op === true && lvalue[0] === "name" && rvalue[0] === "binary" &&
                             ~okOps.indexOf(rvalue[1]) && rvalue[2][0] === "name" &&
                             rvalue[2][1] === lvalue[1]) {
-                                return [ this[0], rvalue[1], lvalue, rvalue[3] ]
+                                return [ this[0], rvalue[1], lvalue, rvalue[3] ];
                         }
                         return [ this[0], op, lvalue, rvalue ];
                 },
@@ -2976,7 +2980,7 @@ function gen_code(ast, options) {
                 "string": encode_string,
                 "num": make_num,
                 "name": make_name,
-                "debugger": function(){ return "debugger;" },
+                "debugger": function(){ return "debugger;"; },
                 "toplevel": function(statements) {
                         return make_block_statements(statements)
                                 .join(newline + newline);
@@ -3018,8 +3022,8 @@ function gen_code(ast, options) {
                                 var w = ast_walker(), has_call = {};
                                 try {
                                         w.with_walkers({
-                                                "call": function() { throw has_call },
-                                                "function": function() { return this }
+                                                "call": function() { throw has_call; },
+                                                "function": function() { return this; }
                                         }, function(){
                                                 w.walk(expr);
                                         });
@@ -3205,7 +3209,7 @@ function gen_code(ast, options) {
                 "directive": function(dir) {
                         return make_string(dir) + ";";
                 }
-        }, function(){ return make(ast) });
+        }, function(){ return make(ast); });
 
         // The squeezer replaces "block"-s that contain only a single
         // statement with the statement itself; technically, the AST
@@ -3332,19 +3336,21 @@ function split_lines(code, max_line_length) {
                 };
                 function custom(){
                         var tok = next_token.apply(this, arguments);
-                        out: {
-                                if (prev_token) {
-                                        if (prev_token.type == "keyword") break out;
+                        if (prev_token) {
+                                if (prev_token.type == "keyword") {
+                                        prev_token = tok;
+                                        return tok;
                                 }
-                                if (current_length(tok) > max_line_length) {
-                                        switch (tok.type) {
-                                            case "keyword":
-                                            case "atom":
-                                            case "name":
-                                            case "punc":
-                                                split_here(tok);
-                                                break out;
-                                        }
+                        }
+                        if (current_length(tok) > max_line_length) {
+                                switch (tok.type) {
+                                    case "keyword":
+                                    case "atom":
+                                    case "name":
+                                    case "punc":
+                                        split_here(tok);
+                                        prev_token = tok;
+                                        return tok;
                                 }
                         }
                         prev_token = tok;
@@ -3422,11 +3428,11 @@ var MAP;
                 else for (i in a) if (HOP(a, i)) doit();
                 return top.concat(ret);
         };
-        MAP.at_top = function(val) { return new AtTop(val) };
-        MAP.splice = function(val) { return new Splice(val) };
+        MAP.at_top = function(val) { return new AtTop(val); };
+        MAP.splice = function(val) { return new Splice(val); };
         var skip = MAP.skip = {};
-        function AtTop(val) { this.v = val };
-        function Splice(val) { this.v = val };
+        function AtTop(val) { this.v = val; };
+        function Splice(val) { this.v = val; };
 })();
 
 /* -----[ Exports ]----- */
@@ -3437,17 +3443,17 @@ exports.ast_squeeze = ast_squeeze;
 exports.ast_lift_variables = ast_lift_variables;
 exports.gen_code = gen_code;
 exports.ast_add_scope = ast_add_scope;
-exports.set_logger = function(logger) { warn = logger };
+exports.set_logger = function(logger) { warn = logger; };
 exports.make_string = make_string;
 exports.split_lines = split_lines;
 exports.MAP = MAP;
 
 // keep this last!
-var jsp = typeof require === 'undefined' ? this.parser : require("./parse-js"),
+var jsp = typeof require === 'undefined' ? this.uglify.parser : require("./parse-js"),
     slice = jsp.slice,
     member = jsp.member,
     curry = jsp.curry,
-    MAP = pro.MAP,
+    MAP = MAP,
     PRECEDENCE = jsp.PRECEDENCE,
     OPERATORS = jsp.OPERATORS;
 
@@ -3516,4 +3522,4 @@ function ast_squeeze_more(ast) {
 };
 
 exports.ast_squeeze_more = ast_squeeze_more;
-})(typeof exports === 'undefined' ? this.process = {} : exports);
+})(typeof exports === 'undefined' ? this.uglify.uglify = {} : exports);
