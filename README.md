@@ -16,11 +16,11 @@ $ npm install gear-lib
 
 ```javascript
 gear.queue()
- .load(['foo.js', 'bar.js', 'baz.js'])
+ .read(['foo.js', 'bar.js', 'baz.js'])
  .concat()
  .jslint()
  .jsminify()
- .s3({file: 'foobarbaz.js', client: {
+ .s3({name: 'foobarbaz.js', client: {
     key: '<key>',
     secret: '<secret>',
     bucket: 'gearjs'
@@ -111,7 +111,7 @@ Deploy file to S3.
 
 __Arguments__
 
- * options.file - Filename to write to S3.
+ * options.name - Filename to write to S3.
  * options.client.key - S3 key.
  * options.client.secret - S3 secret.
  * options.client.bucket - S3 bucket.
