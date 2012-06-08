@@ -15,13 +15,13 @@ var files = [
 ];
 
 new gear.Queue({registry: new gear.Registry({dirname: __dirname + '/lib/'})})
-    .load(files)
+    .read(files)
     .concat()
     .tasks({
-        write: {task: 'write', options: 'build/gear-lib.js'},
-        minify: {task: 'jsminify'},
-        writeminify: {task: 'write', options: 'build/gear-lib.min.js', requires: 'minify'},
-        join: {requires: ['write', 'writeminify']}
+        dev:     {task: ['write', 'build/gear-lib.js']},
+        prodmin: {task: 'jsminify'},
+        prod:    {requires: 'minify', task: ['write', 'build/gear-lib.min.js']},
+        join:    {requires: ['dev', 'prod']}
     })
     .run(function(err, results) {
         if (err) {
