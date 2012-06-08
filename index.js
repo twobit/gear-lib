@@ -3,16 +3,12 @@
  * Copyrights licensed under the New BSD License.
  * See the accompanying LICENSE file for terms.
  */
- var tasks = [
-    './lib/csslint',
-    './lib/cssminify',
-    './lib/jslint',
-    './lib/jsminify',
-    './lib/s3'
-];
+var fs = require('fs'),
+    path = __dirname + '/lib/',
+    tasks = fs.readdirSync(path).filter(function(file) {return file.substr(-3) === '.js';});
 
 tasks.forEach(function(task) {
-    var mod = require(task),
+    var mod = require(path + task),
         name;
 
     for (name in mod) {
