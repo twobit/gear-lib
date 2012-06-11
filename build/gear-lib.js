@@ -1,8 +1,4 @@
-this.gear = this.gear || {};this.gear.tasks = this.gear.tasks || {};if (typeof exports === 'undefined') {
-    this.uglify = {};
-}
-
-(function(exports) {
+var gear = gear || {};gear.tasks = gear.tasks || {};gear.vendor = gear.vendor || {};(function(exports) {
 /***********************************************************************
 
   A JavaScript tokenizer / parser / beautifier / compressor.
@@ -3522,7 +3518,7 @@ function ast_squeeze_more(ast) {
 };
 
 exports.ast_squeeze_more = ast_squeeze_more;
-})(typeof exports === 'undefined' ? this.uglify.uglify = {} : exports);// jslint.js
+})(gear.vendor.uglify);// jslint.js
 // 2012-05-09
 
 // Copyright (c) 2002 Douglas Crockford  (www.JSLint.com)
@@ -3841,7 +3837,7 @@ exports.ast_squeeze_more = ast_squeeze_more;
 // value is the JSLINT function itself. That function is also an object that
 // can contain data and other functions.
 
-var JSLINT = (function () {
+gear.vendor.jslint = (function () {
     'use strict';
 
     function array_to_object(array, value) {
@@ -9933,8 +9929,8 @@ klass:              do {
         uglify = require("uglify-js").uglify;
     }
     else {
-        parser = this.uglify.parser;
-        uglify = this.uglify.uglify;
+        parser = gear.vendor.parser;
+        uglify = gear.vendor.uglify.uglify;
     }
 
     /**
@@ -9954,16 +9950,16 @@ klass:              do {
             done(null, new blob.constructor(uglified));
         } catch (e) {
             console.error(e);
-            done('Minify failed, source file unparseable');
+            done('Minify failed, ' + (blob.properties.name ? blob.properties.name : 'file') + ' unparseable');
         }
     };
-})(typeof exports === 'undefined' ? this.gear.tasks : exports);/*
+})(typeof exports === 'undefined' ? gear.tasks : exports);/*
  * Copyright (c) 2011-2012, Yahoo! Inc.  All rights reserved.
  * Copyrights licensed under the New BSD License.
  * See the accompanying LICENSE file for terms.
  */
 (function(exports) {
-    var linter = typeof require !== 'undefined' ? require('jslint/lib/linter.js') : this.JSLINT;
+    var linter = typeof require !== 'undefined' ? require('jslint/lib/linter.js') : gear.vendor.jslint;
 
     /**
      * Lint JS.
@@ -9976,4 +9972,4 @@ klass:              do {
         var result = linter.lint(blob.toString(), options);
         done(null, new blob.constructor(blob, {errors: result}));
     };
-})(typeof exports === 'undefined' ? this.gear.tasks : exports);
+})(typeof exports === 'undefined' ? gear.tasks : exports);

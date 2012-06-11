@@ -9,8 +9,9 @@
  */
 var gear = require('gear');
 
-var namespace = 'this.gear = this.gear || {};' +
-                'this.gear.tasks = this.gear.tasks || {};';
+var namespace = 'var gear = gear || {};' +
+                'gear.tasks = gear.tasks || {};' +
+                'gear.vendor = gear.vendor || {};';
 
 var files = [
     'vendor/uglify.js',

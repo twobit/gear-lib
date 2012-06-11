@@ -1,7 +1,3 @@
-if (typeof exports === 'undefined') {
-    this.uglify = {};
-}
-
 (function(exports) {
 /***********************************************************************
 
@@ -3522,4 +3518,4 @@ function ast_squeeze_more(ast) {
 };
 
 exports.ast_squeeze_more = ast_squeeze_more;
-})(typeof exports === 'undefined' ? this.uglify.uglify = {} : exports);
+})(gear.vendor.uglify);
