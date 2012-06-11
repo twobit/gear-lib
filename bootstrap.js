@@ -9,12 +9,18 @@
  */
 var gear = require('gear');
 
+var namespace = 'this.gear = this.gear || {};' +
+                'this.gear.tasks = this.gear.tasks || {};';
+
 var files = [
     'vendor/uglify.js',
-    'lib/jsminify.js'
+    'vendor/jslint.js',
+    'lib/jsminify.js',
+    'lib/jslint.js'
 ];
 
 new gear.Queue({registry: new gear.Registry({dirname: __dirname + '/lib/'})})
+    .load(namespace)
     .read(files)
     .concat()
     .tasks({
