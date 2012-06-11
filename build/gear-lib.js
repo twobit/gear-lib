@@ -1,4 +1,6 @@
-var gear = gear || {};gear.tasks = gear.tasks || {};gear.vendor = gear.vendor || {};(function(exports) {
+var gear = gear || {};gear.tasks = gear.tasks || {};gear.vendor = gear.vendor || {};gear.vendor.uglify = {};
+
+(function(exports) {
 /***********************************************************************
 
   A JavaScript tokenizer / parser / beautifier / compressor.
@@ -1361,7 +1363,7 @@ exports.is_alphanumeric_char = is_alphanumeric_char;
 exports.set_logger = function(logger) {
         warn = logger;
 };
-})(typeof exports === 'undefined' ? this.uglify.parser = {} : exports);
+})(gear.vendor.uglify.parser);
 
 (function(exports) {
 /***********************************************************************
@@ -3518,7 +3520,7 @@ function ast_squeeze_more(ast) {
 };
 
 exports.ast_squeeze_more = ast_squeeze_more;
-})(gear.vendor.uglify);// jslint.js
+})(gear.vendor.uglify.uglify);// jslint.js
 // 2012-05-09
 
 // Copyright (c) 2002 Douglas Crockford  (www.JSLint.com)
@@ -9929,7 +9931,7 @@ klass:              do {
         uglify = require("uglify-js").uglify;
     }
     else {
-        parser = gear.vendor.parser;
+        parser = gear.vendor.uglify.parser;
         uglify = gear.vendor.uglify.uglify;
     }
 

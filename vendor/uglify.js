@@ -1,3 +1,5 @@
+gear.vendor.uglify = {};
+
 (function(exports) {
 /***********************************************************************
 
@@ -1361,7 +1363,7 @@ exports.is_alphanumeric_char = is_alphanumeric_char;
 exports.set_logger = function(logger) {
         warn = logger;
 };
-})(typeof exports === 'undefined' ? this.uglify.parser = {} : exports);
+})(gear.vendor.uglify.parser);
 
 (function(exports) {
 /***********************************************************************
@@ -3518,4 +3520,4 @@ function ast_squeeze_more(ast) {
 };
 
 exports.ast_squeeze_more = ast_squeeze_more;
-})(gear.vendor.uglify);
+})(gear.vendor.uglify.uglify);
