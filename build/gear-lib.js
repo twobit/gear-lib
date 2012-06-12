@@ -1428,7 +1428,7 @@ exports.set_logger = function(logger) {
 
  ***********************************************************************/
 
-var jsp = typeof require === 'undefined' ? this.uglify.parser : require("./parse-js"),
+var jsp = typeof require === 'undefined' ? gear.vendor.uglify.parser : require("./parse-js"),
     slice = jsp.slice,
     member = jsp.member,
     PRECEDENCE = jsp.PRECEDENCE,
@@ -3449,7 +3449,7 @@ exports.split_lines = split_lines;
 exports.MAP = MAP;
 
 // keep this last!
-var jsp = typeof require === 'undefined' ? this.uglify.parser : require("./parse-js"),
+var jsp = typeof require === 'undefined' ? gear.vendor.uglify.parser : require("./parse-js"),
     slice = jsp.slice,
     member = jsp.member,
     curry = jsp.curry,
