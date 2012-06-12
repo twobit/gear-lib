@@ -9968,12 +9968,17 @@ klass:              do {
     /**
      * Lint JS.
      *
-     * @param options {Object} Ignored.
+     * @param options {Object} JSLint options.
+     * @param options.callback {Function} Callback on lint status.
      * @param blob {Object} Incoming blob.
      * @param done {Function} Callback on task completion.
      */
     exports.jslint = function(options, blob, done) {
-        var result = linter.lint(blob.toString(), options);
-        done(null, new blob.constructor(blob, {errors: result}));
+        options = options || {};
+
+        var result = linter.lint(blob.toString(), options),
+            linted = result ? new blob.constructor(blob, {jslint: result}) : blob;
+
+        done(options.callback ? options.callback(linted) : null, linted);
     };
 })(typeof exports === 'undefined' ? gear.tasks : exports);
