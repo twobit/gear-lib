@@ -1,4 +1,6 @@
 var gear = gear || {};gear.tasks = gear.tasks || {};gear.vendor = gear.vendor || {};gear.vendor.uglify = {};
+gear.vendor.uglify.parser = {};
+gear.vendor.uglify.uglify = {};
 
 (function(exports) {
 /***********************************************************************

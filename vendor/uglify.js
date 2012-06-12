@@ -1,4 +1,6 @@
 gear.vendor.uglify = {};
+gear.vendor.uglify.parser = {};
+gear.vendor.uglify.uglify = {};
 
 (function(exports) {
 /***********************************************************************
