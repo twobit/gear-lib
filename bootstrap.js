@@ -14,8 +14,10 @@ var namespace = 'var gear = gear || {};' +
                 'gear.vendor = gear.vendor || {};';
 
 var files = [
+    'vendor/csslint.js',
     'vendor/uglify.js',
     'vendor/jslint.js',
+    'lib/csslint.js',
     'lib/jsminify.js',
     'lib/jslint.js'
 ];
@@ -23,6 +25,9 @@ var files = [
 new gear.Queue({registry: new gear.Registry({dirname: __dirname + '/lib/'})})
     .load(namespace)
     .read(files)
+    .jslint({callback: function(blob) {
+        console.log(blob.name, blob.jslint);
+    }})
     .concat()
     .tasks({
         dev:     {task: ['write', 'build/gear-lib.js']},
