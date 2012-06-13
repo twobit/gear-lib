@@ -24101,7 +24101,7 @@ Handlebars.template = Handlebars.VM.template;
             if (err) {
                 done(err);
             } else {
-                done(null, new blob.constructor(tree.toCSS({compress: true})));
+                done(null, new blob.constructor(tree.toCSS({compress: true}), blob));
             }
         });
     };
@@ -24147,9 +24147,10 @@ Handlebars.template = Handlebars.VM.template;
      * @param done {Function} Callback on task completion.
      */
     exports.jsminify = function(options, blob, done) {
+        options = options || {};
         try {
-            var ast = parser.parse(blob.result, true);
-            done(null, new blob.constructor(uglify.gen_code(ast, options)));
+            var ast = parser.parse(blob.result, options.semicolon || false);
+            done(null, new blob.constructor(uglify.gen_code(ast, options), blob));
         } catch (e) {
             this._log(e);
             done('Minify failed, ' + (blob.name || 'file') + ' unparseable');
@@ -24201,6 +24202,6 @@ Handlebars.template = Handlebars.VM.template;
      */
     exports.handlebars = function(vars, blob, done) {
         var tmpl = handlebars.compile(blob.result);
-        done(null, new blob.constructor(tmpl(vars)));
+        done(null, new blob.constructor(tmpl(vars), blob));
     };
 })(typeof exports === 'undefined' ? gear.tasks : exports);
