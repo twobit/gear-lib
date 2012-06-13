@@ -1,6 +1,7 @@
 var gear = gear || {};
 gear.tasks = gear.tasks || {};
 gear.vendor = gear.vendor || {};
+gear.vendor.cssminify = {};
 //
 // LESS - Leaner CSS v1.3.0
 // http://lesscss.org
@@ -3478,7 +3479,7 @@ function error(e, href) {
     }
 }
 
-})(window);/*! 
+})(gear.vendor.cssminify);/*! 
 CSSLint
 Copyright (c) 2011 Nicole Sullivan and Nicholas C. Zakas. All rights reserved.
 
@@ -22533,9 +22534,7 @@ klass:              do {
  * See the accompanying LICENSE file for terms.
  */
 (function(exports) {
-    if (typeof require !== 'undefined') {
-        var less = require('less');
-    }
+    var less = typeof require !== 'undefined' ? require('less') : gear.vendor.cssminify;
 
     /**
      * Minify CSS.

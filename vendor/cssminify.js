@@ -1,3 +1,4 @@
+gear.vendor.cssminify = {};
 //
 // LESS - Leaner CSS v1.3.0
 // http://lesscss.org
@@ -3475,4 +3476,4 @@ function error(e, href) {
     }
 }
 
-})(window);
+})(gear.vendor.cssminify);
