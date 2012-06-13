@@ -19,10 +19,12 @@ var files = [
     'vendor/csslint.js',
     'vendor/uglify.js',
     'vendor/jslint.js',
+    'vendor/handlebars.js',
     'lib/cssminify.js',
     'lib/csslint.js',
     'lib/jsminify.js',
-    'lib/jslint.js'
+    'lib/jslint.js',
+    'lib/handlebars.js'
 ];
 
 new gear.Queue({registry: new gear.Registry({dirname: __dirname + '/lib/'})})
