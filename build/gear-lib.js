@@ -22534,7 +22534,7 @@ klass:              do {
  * See the accompanying LICENSE file for terms.
  */
 (function(exports) {
-    var less = typeof require !== 'undefined' ? require('less') : gear.vendor.cssminify;
+    var less = typeof require !== 'undefined' ? require('less') : gear.vendor.cssminify.less;
 
     /**
      * Minify CSS.
