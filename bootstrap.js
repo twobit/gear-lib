@@ -9,7 +9,7 @@
  */
 var gear = require('gear');
 
-var namespace = '"use strict";\n' +
+var namespace = '' + //'"use strict";\n' +
                 'var gear = gear || {};\n' +
                 'gear.tasks = gear.tasks || {};\n' +
                 'gear.vendor = gear.vendor || {};\n';
