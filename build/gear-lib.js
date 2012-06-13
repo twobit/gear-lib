@@ -1,4 +1,8 @@
-var gear = gear || {};gear.tasks = gear.tasks || {};gear.vendor = gear.vendor || {};/*! 
+"use strict";
+var gear = gear || {};
+gear.tasks = gear.tasks || {};
+gear.vendor = gear.vendor || {};
+/*! 
 CSSLint
 Copyright (c) 2011 Nicole Sullivan and Nicholas C. Zakas. All rights reserved.
 
@@ -19078,15 +19082,8 @@ klass:              do {
  * See the accompanying LICENSE file for terms.
  */
 (function(exports) {
-    var parser, uglify;
-    if (typeof require !== 'undefined') {
-        parser = require("uglify-js").parser;
-        uglify = require("uglify-js").uglify;
-    }
-    else {
-        parser = gear.vendor.uglify.parser;
-        uglify = gear.vendor.uglify.uglify;
-    }
+    var parser = typeof require !== 'undefined' ? require("uglify-js").parser : gear.vendor.uglify.parser,
+        uglify = typeof require !== 'undefined' ? require("uglify-js").uglify : gear.vendor.uglify.uglify;
 
     /**
      * Minify JS.
@@ -19096,16 +19093,12 @@ klass:              do {
      * @param done {Function} Callback on task completion.
      */
     exports.jsminify = function(options, blob, done) {
-        var ast,
-            uglified = "";
-
         try {
-            ast = parser.parse(blob.toString(), true);
-            uglified = uglify.gen_code(ast, options);
-            done(null, new blob.constructor(uglified));
+            var ast = parser.parse(blob.toString(), true);
+            done(null, new blob.constructor(uglify.gen_code(ast, options)));
         } catch (e) {
-            console.error(e);
-            done('Minify failed, ' + (blob.properties.name ? blob.properties.name : 'file') + ' unparseable');
+            self._log(e);
+            done('Minify failed, ' + (blob.name || 'file') + ' unparseable');
         }
     };
 })(typeof exports === 'undefined' ? gear.tasks : exports);/*
@@ -19129,7 +19122,7 @@ klass:              do {
 
         var result = linter.lint(blob.toString(), options),
             errors = result.errors.map(function(err) {
-                return err ? err.reason : null;
+                return err ? 'line ' + err.line + ' character ' + err.character + ': ' + err.reason : null;
             }).filter(function(err) { // Filter nulls
                 return err;
             }),

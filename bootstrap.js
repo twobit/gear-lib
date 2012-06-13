@@ -9,9 +9,10 @@
  */
 var gear = require('gear');
 
-var namespace = 'var gear = gear || {};' +
-                'gear.tasks = gear.tasks || {};' +
-                'gear.vendor = gear.vendor || {};';
+var namespace = '"use strict";\n' +
+                'var gear = gear || {};\n' +
+                'gear.tasks = gear.tasks || {};\n' +
+                'gear.vendor = gear.vendor || {};\n';
 
 var files = [
     'vendor/csslint.js',
@@ -25,8 +26,8 @@ var files = [
 new gear.Queue({registry: new gear.Registry({dirname: __dirname + '/lib/'})})
     .load(namespace)
     .read(files)
-    .jslint({callback: function(blob) {
-        console.log(blob.name, blob.jslint);
+    .jslint({nomen: true, sloppy: true, white: true, vars: true, callback: function(blob) {
+        console.log(blob.name ? blob.name : 'inline', blob.jslint);
     }})
     .concat()
     .tasks({
