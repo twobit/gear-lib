@@ -31,7 +31,7 @@ new gear.Queue({registry: new gear.Registry({dirname: __dirname + '/lib/'})})
     .load(namespace)
     .read(files)
     .jslint({nomen: true, sloppy: true, white: true, vars: true, callback: function(blob) {
-        console.log(blob.name ? blob.name : 'inline', blob.jslint);
+        // console.log(blob.name ? blob.name : 'inline', blob.jslint);
     }})
     .concat()
     .tasks({
