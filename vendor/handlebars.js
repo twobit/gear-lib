@@ -1,3 +1,5 @@
+gear.vendor.handlebars = {};
+
 (function(Handlebars) {
 
 Handlebars.VERSION = "1.0.beta.5";
