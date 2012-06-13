@@ -15,9 +15,11 @@ var namespace = '' + //'"use strict";\n' +
                 'gear.vendor = gear.vendor || {};\n';
 
 var files = [
+    'vendor/cssminify.js',
     'vendor/csslint.js',
     'vendor/uglify.js',
     'vendor/jslint.js',
+    'lib/cssminify.js',
     'lib/csslint.js',
     'lib/jsminify.js',
     'lib/jslint.js'
