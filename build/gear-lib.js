@@ -16447,8 +16447,11 @@ exports.ast_squeeze_more = ast_squeeze_more;
 // global variable. That function will be invoked immediately, and its return
 // value is the JSLINT function itself. That function is also an object that
 // can contain data and other functions.
+gear.vendor.jslint = {};
 
-gear.vendor.jslint = (function (JSLINT) {
+(function(JSLINT) {
+
+JSLINT = (function () {
     'use strict';
 
     function array_to_object(array, value) {
@@ -22528,6 +22531,8 @@ klass:              do {
     itself.edition = '2012-05-09';
 
     return itself;
+}());
+
 }(gear.vendor.jslint));gear.vendor.handlebars = {};
 
 (function(Handlebars) {
