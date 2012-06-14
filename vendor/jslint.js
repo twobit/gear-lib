@@ -6404,7 +6404,7 @@ klass:              do {
 
 vendor.lint = function() {
     JSLINT.apply(this, arguments);
-    return JSLINT.errors;
+    return {errors: JSLINT.errors};
 };
 
 }(gear.vendor.jslint));
