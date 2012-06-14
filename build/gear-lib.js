@@ -16447,11 +16447,11 @@ exports.ast_squeeze_more = ast_squeeze_more;
 // global variable. That function will be invoked immediately, and its return
 // value is the JSLINT function itself. That function is also an object that
 // can contain data and other functions.
+
 gear.vendor.jslint = {};
 
-(function(JSLINT) {
-
-JSLINT = (function () {
+(function(vendor) {
+var JSLINT = (function () {
     'use strict';
 
     function array_to_object(array, value) {
@@ -22533,6 +22533,8 @@ klass:              do {
     return itself;
 }());
 
+vendor.lint = JSLINT;
+
 }(gear.vendor.jslint));gear.vendor.handlebars = {};
 
 (function(Handlebars) {
@@ -24167,7 +24169,7 @@ Handlebars.template = Handlebars.VM.template;
  * See the accompanying LICENSE file for terms.
  */
 (function(exports) {
-    var linter = typeof require !== 'undefined' ? require('jslint/lib/linter.js').lint : gear.vendor.jslint;
+    var linter = typeof require !== 'undefined' ? require('jslint/lib/linter.js') : gear.vendor.jslint;
 
     /**
      * Lint JS.
@@ -24180,7 +24182,7 @@ Handlebars.template = Handlebars.VM.template;
     exports.jslint = function(options, blob, done) {
         options = options || {};
 
-        var result = linter(blob.result, options),
+        var result = linter.lint(blob.result, options),
             errors = result.errors.map(function(err) {
                 return err ? 'line ' + err.line + ' character ' + err.character + ': ' + err.reason : null;
             }).filter(function(err) { // Filter nulls
