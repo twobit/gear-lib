@@ -6402,6 +6402,9 @@ klass:              do {
     return itself;
 }());
 
-vendor.lint = JSLINT;
+vendor.lint = function() {
+    JSLINT.apply(this, arguments);
+    return JSLINT.errors;
+};
 
 }(gear.vendor.jslint));
