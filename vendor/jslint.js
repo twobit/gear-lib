@@ -316,11 +316,11 @@
 // global variable. That function will be invoked immediately, and its return
 // value is the JSLINT function itself. That function is also an object that
 // can contain data and other functions.
+
 gear.vendor.jslint = {};
 
-(function(JSLINT) {
-
-JSLINT = (function () {
+(function(vendor) {
+var JSLINT = (function () {
     'use strict';
 
     function array_to_object(array, value) {
@@ -6401,5 +6401,7 @@ klass:              do {
 
     return itself;
 }());
+
+vendor.lint = JSLINT;
 
 }(gear.vendor.jslint));
