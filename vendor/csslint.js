@@ -1,3 +1,5 @@
+define('csslint', ['require', 'exports'], function(require, exports) {
+
 /*! 
 CSSLint
 Copyright (c) 2011 Nicole Sullivan and Nicholas C. Zakas. All rights reserved.
@@ -22,7 +24,7 @@ THE SOFTWARE.
 
 */
 /* Build time: 14-May-2012 10:24:48 */
-gear.vendor.csslint = (function(){
+var CSSLint = (function(){
 
 /*!
 Parser-Lib
@@ -9124,3 +9126,6 @@ CSSLint.addFormatter({
 
 return CSSLint;
 })();
+
+    exports.CSSLint = CSSLint;
+});

@@ -25,10 +25,16 @@ var helper = handlebars.compile(
 );
 
 var files = {
+    'vendor/csslint.js': {},
+    'vendor/less.js': {},
     'vendor/jslint.js': {},
     'vendor/uglify.js': {},
+    'vendor/handlebars.js': {},
+    'lib/csslint.js': {name: 'gear-csslint', modules: ['csslint'], task: true},
+    'lib/cssminify.js': {name: 'cssminify', modules: ['less'], task: true},
     'lib/jslint.js': {name: 'gear-jslint', modules: ['jslint/lib/linter'], task: true},
-    'lib/jsminify.js': {name: 'gear-jsminify', modules: ['uglify-js'], task: true}
+    'lib/jsminify.js': {name: 'jsminify', modules: ['uglify-js'], task: true},
+    'lib/handlebars.js': {name: 'gear-handlebars', modules: ['handlebars'], task: true}
 };
 
 var tasks = [];
