@@ -62,12 +62,12 @@ new gear.Queue({registry: new gear.Registry({dirname: __dirname + '/lib/'})})
     .load(helper({tasks: tasks}))
     .concat()
     .tasks({
-        dev:     {task: ['write', 'build/gear-lib.js']}
-        /*
+        dev:     {task: ['write', 'build/gear-lib.js']},
+
         prodmin: {task: 'jsminify'},
-        prod:    {requires: 'minify', task: ['write', 'build/gear-lib.min.js']},
+        prod:    {requires: 'prodmin', task: ['write', 'build/gear-lib.min.js']},
+
         join:    {requires: ['dev', 'prod']}
-        */
     })
     .run(function(err, results) {
         if (err) {
