@@ -1,3 +1,4 @@
+define('jslint/lib/linter', ['require', 'exports'], function(require, exports) {
 // jslint.js
 // 2012-05-09
 
@@ -317,9 +318,6 @@
 // value is the JSLINT function itself. That function is also an object that
 // can contain data and other functions.
 
-gear.vendor.jslint = {};
-
-(function(vendor) {
 var JSLINT = (function () {
     'use strict';
 
@@ -6402,9 +6400,8 @@ klass:              do {
     return itself;
 }());
 
-vendor.lint = function() {
-    JSLINT.apply(this, arguments);
-    return {errors: JSLINT.errors};
-};
-
-}(gear.vendor.jslint));
+    exports.lint = function() {
+        JSLINT.apply(this, arguments);
+        return {errors: JSLINT.errors};
+    };
+});
