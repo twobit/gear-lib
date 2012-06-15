@@ -33,7 +33,9 @@ var gear = require('gear'),
         'lib/jsminify.js': {name: 'jsminify', modules: ['uglify-js'], task: true},
         'lib/handlebars.js': {name: 'gear-handlebars', modules: ['handlebars'], task: true}
     },
-    tasks = Object.keys(files).filter(function(file) {return files[file].task;});
+    tasks = [];
+
+for (var key in files) {if (files[key].task) {tasks.push(files[key].name);}}
 
 new gear.Queue({registry: new gear.Registry({dirname: __dirname + '/lib/'})})
     .read(Object.keys(files))
@@ -42,8 +44,8 @@ new gear.Queue({registry: new gear.Registry({dirname: __dirname + '/lib/'})})
         //console.log(blob.name ? blob.name : 'inline', blob.jslint);
     }})
     .concat({callback: function(blob) {
-        var obj = files[blob.name];
-        if (obj && obj.name) {
+        if (blob.name in files && files[blob.name].name) {
+            var obj = files[blob.name];
             var vars = {result: blob.result, modules: []};
             Object.keys(obj).forEach(function(attr) {vars[attr] = obj[attr];});
             //Object.keys(vars.modules).forEach(function(attr) {vars.paths[attr] = obj[attr];});
