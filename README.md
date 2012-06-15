@@ -15,17 +15,17 @@ $ npm install gear-lib
 ### Deploy to S3
 
 ```javascript
-gear.queue()
- .read(['foo.js', 'bar.js', 'baz.js'])
- .concat()
- .jslint()
- .jsminify()
- .s3({name: 'foobarbaz.js', client: {
-    key: '<key>',
-    secret: '<secret>',
-    bucket: 'gearjs'
- }})
- .run();
+new Queue()
+    .read(['foo.js', 'bar.js', 'baz.js'])
+    .concat()
+    .jslint()
+    .jsminify()
+    .s3({name: 'foobarbaz.js', client: {
+        key: '<key>',
+        secret: '<secret>',
+        bucket: 'gearjs'
+    }})
+    .run();
 ```
 
 ## Documentation
@@ -119,7 +119,7 @@ __Arguments__
 __Example__
 
 ```javascript
- .s3({file: 'foobarbaz.js', client: {
+ .s3({name: 'foobarbaz.js', client: {
     key: '<key>',
     secret: '<secret>',
     bucket: 'gearjs'
