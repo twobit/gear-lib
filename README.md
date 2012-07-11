@@ -15,7 +15,7 @@ $ npm install gear-lib
 ### Deploy to S3
 
 ```javascript
-new Queue()
+new Queue({registry: new Registry({module: 'gear-lib'})})
     .read(['foo.js', 'bar.js', 'baz.js'])
     .concat()
     .jslint()
