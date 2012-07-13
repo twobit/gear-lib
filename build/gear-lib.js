@@ -24094,11 +24094,7 @@ Handlebars.template = Handlebars.VM.template;
     for (var attr in Handlebars) {
         exports[attr] = Handlebars[attr];
     }
-});
-
-define('gear-csslint', ['require', 'exports', 'csslint'], function(require, exports) {
-
-/*
+});/*
  * Copyright (c) 2011-2012, Yahoo! Inc.  All rights reserved.
  * Copyrights licensed under the New BSD License.
  * See the accompanying LICENSE file for terms.
@@ -24121,15 +24117,7 @@ exports.csslint = function(options, blob, done) {
         linted = errors ? new blob.constructor(blob, {csslint: errors}) : blob;
 
     done(options.callback ? options.callback(linted) : null, linted);
-};
-
-});
-
-
-
-define('cssminify', ['require', 'exports', 'less'], function(require, exports) {
-
-/*
+};/*
  * Copyright (c) 2011-2012, Yahoo! Inc.  All rights reserved.
  * Copyrights licensed under the New BSD License.
  * See the accompanying LICENSE file for terms.
@@ -24153,15 +24141,7 @@ exports.cssminify = function(options, blob, done) {
             done(null, new blob.constructor(tree.toCSS({compress: true}), blob));
         }
     });
-};
-
-});
-
-
-
-define('gear-jslint', ['require', 'exports', 'jslint/lib/linter'], function(require, exports) {
-
-/*
+};/*
  * Copyright (c) 2011-2012, Yahoo! Inc.  All rights reserved.
  * Copyrights licensed under the New BSD License.
  * See the accompanying LICENSE file for terms.
@@ -24188,15 +24168,7 @@ exports.jslint = function(options, blob, done) {
         linted = errors ? new blob.constructor(blob, {jslint: errors}) : blob;
 
     done(options.callback ? options.callback(linted) : null, linted);
-};
-
-});
-
-
-
-define('jsminify', ['require', 'exports', 'uglify-js'], function(require, exports) {
-
-/*
+};/*
  * Copyright (c) 2011-2012, Yahoo! Inc.  All rights reserved.
  * Copyrights licensed under the New BSD License.
  * See the accompanying LICENSE file for terms.
@@ -24220,15 +24192,7 @@ exports.jsminify = function(options, blob, done) {
         this._log(e);
         done('Minify failed, ' + (blob.name || 'file') + ' unparseable');
     }
-};
-
-});
-
-
-
-define('gear-handlebars', ['require', 'exports', 'handlebars'], function(require, exports) {
-
-/*
+};/*
  * Copyright (c) 2011-2012, Yahoo! Inc.  All rights reserved.
  * Copyrights licensed under the New BSD License.
  * See the accompanying LICENSE file for terms.
@@ -24246,11 +24210,7 @@ var handlebars = require('handlebars');
 exports.handlebars = function(vars, blob, done) {
     var tmpl = handlebars.compile(blob.result);
     done(null, new blob.constructor(tmpl(vars), blob));
-};
-
-});
-
-define('gear-lib', ['require', 'exports', 'gear-csslint', 'cssminify', 'gear-jslint', 'jsminify', 'gear-handlebars'], function(require, exports) {
+};define('gear-lib', ['require', 'exports', 'gear-csslint', 'cssminify', 'gear-jslint', 'jsminify', 'gear-handlebars'], function(require, exports) {
 var tasks = [];
 tasks.push(require('gear-csslint'));tasks.push(require('cssminify'));tasks.push(require('gear-jslint'));tasks.push(require('jsminify'));tasks.push(require('gear-handlebars'));
 tasks.forEach(function(mod) {for (var task in mod) {exports[task] = mod[task];}});
