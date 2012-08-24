@@ -4,6 +4,8 @@
 
 Useful tasks to lint, minify, and deploy assets.
 
+[![Build Status](https://secure.travis-ci.org/twobit/gear-lib.png)](http://travis-ci.org/twobit/gear-lib)
+
 ## Installation
 
 ```bash

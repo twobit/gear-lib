@@ -13,11 +13,14 @@ var Blob = require('gear').Blob,
     };
 
 describe('s3()', function() {
+    // Travis CI can't write to S3
+    /*
     it('should deploy to s3', function(done) {
         s3(fixtures.options, fixtures.js, function(err, results) {
             done(err);
         });
     });
+    */
 
     it('should replace {checksum} in filename');
 });
