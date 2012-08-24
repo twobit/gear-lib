@@ -7,6 +7,9 @@
   "repository": {"type": "git", "url": "http://github.com/yahoo/gear-lib.git"},
   "bugs": {"url": "http://github.com/yahoo/gear-lib/issues"},
   "main": "index",
+  "scripts": {
+      "test": "mocha --require should"
+  },
   "dependencies": {
       "gear": ">= 0.7.0",
       "jslint": "0.1.x",
