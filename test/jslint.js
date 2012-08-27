@@ -7,6 +7,7 @@ var Blob = require('gear').Blob,
 describe('jslint()', function() {
     it('should lint js', function(done) {
         jslint({}, fixtures.js, function(err, results) {
+            results.jslint.length.should.be.above(0);
             done(err);
         });
     });

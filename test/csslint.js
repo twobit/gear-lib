@@ -7,8 +7,8 @@ var should = require('should'),
 
 describe('csslint()', function() {
     it('should lint css', function(done) {
-        csslint({}, fixtures.css, function(err, results) {
-            //should.exist(err);
+        csslint({}, fixtures.css, function(err, res) {
+            res.csslint.length.should.be.above(0);
             done(err);
         });
     });
