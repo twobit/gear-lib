@@ -97,16 +97,17 @@ __Example__
 
 <a name="cssminify" />
 ### cssminify()
-### Aliased as less()
 
 Minify CSS files.
+
+__Aliased as less()__
 
 __Example__
 
 ```javascript
 .cssminify()
 
-// Parse LESS stylesheets without minifying
+// Compile LESS stylesheets without minifying
 .less({compress: false})
 ```
 
