@@ -9,7 +9,6 @@ var should = require('should'),
 describe('csslint()', function() {
     it('should lint css', function(done) {
         csslint({}, fixtures.invalid, function(err, res) {
-            console.log(res);
             res.csslint.length.should.be.above(0);
             done(err);
         });

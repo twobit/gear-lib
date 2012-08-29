@@ -24138,20 +24138,23 @@ define('cssminify', ['require', 'exports', 'less'], function(require, exports) {
 var less = require('less');
 
 /**
- * Minify CSS.
+ * Minify CSS. Also compiles LESS stylesheets.
  *
  * @param options {Object} Ignored.
  * @param blob {Object} Incoming blob.
  * @param done {Function} Callback on task completion.
  */
-exports.cssminify = function(options, blob, done) {
-    var parser = new less.Parser();
+exports.cssminify = exports.less = function(options, blob, done) {
+    options = options || {};
+
+    var parser = new less.Parser(),
+        compress = options.compress !== false;
 
     parser.parse(blob.result, function(err, tree) {
         if (err) {
             done(err);
         } else {
-            done(null, new blob.constructor(tree.toCSS({compress: true}), blob));
+            done(null, new blob.constructor(tree.toCSS({compress: compress}), blob));
         }
     });
 };
