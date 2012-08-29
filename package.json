@@ -1,6 +1,6 @@
 {
   "name": "gear-lib",
-  "version": "0.7.10",
+  "version": "0.8.0",
   "description": "Collection of common Gear.js tasks",
   "author": "Stephen Murphy <stephen@hypernaut.com>",
   "keywords": ["gear", "task", "build"],
@@ -11,7 +11,7 @@
       "test": "mocha --require should"
   },
   "dependencies": {
-      "gear": ">= 0.7.0",
+      "gear": ">= 0.7.x",
       "jslint": "0.1.x",
       "uglify-js": "1.2.x",
       "csslint": "0.9.x",

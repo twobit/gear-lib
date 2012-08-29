@@ -2,12 +2,21 @@ var should = require('should'),
     Blob = require('gear').Blob,
     csslint = require('../lib/csslint').csslint,
     fixtures = {
-        css: new Blob('%%%%')
+        invalid: new Blob('%%%%'),
+        options: new Blob('.foo {width: 0; width: 0;}')
     };
 
 describe('csslint()', function() {
     it('should lint css', function(done) {
-        csslint({}, fixtures.css, function(err, res) {
+        csslint({}, fixtures.invalid, function(err, res) {
+            console.log(res);
+            res.csslint.length.should.be.above(0);
+            done(err);
+        });
+    });
+
+    it('should accept options', function(done) {
+        csslint({config: {'duplicate-properties': true}}, fixtures.options, function(err, res) {
             res.csslint.length.should.be.above(0);
             done(err);
         });

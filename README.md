@@ -20,7 +20,7 @@ $ npm install gear-lib
 new Queue({registry: new Registry({module: 'gear-lib'})})
     .read(['foo.js', 'bar.js', 'baz.js'])
     .concat()
-    .jslint()
+    .jslint({config: {nomen: true}})
     .jsminify()
     .s3({name: 'foobarbaz.js', client: {
         key: '<key>',
@@ -49,12 +49,12 @@ Lint Javascript files.
 
 __Arguments__
 
- * options - Options for JSLint.
+ * options.config - Options for JSLint.
 
 __Example__
 
 ```javascript
-.jslint()
+.jslint({config: {nomen: true}})
 ```
 
 ---------------------------------------
@@ -66,7 +66,7 @@ Minify Javascript files.
 
 __Arguments__
 
- * options - Options for uglify-js.
+ * options.config - Options for uglify-js.
 
 __Example__
 
@@ -83,7 +83,7 @@ Lint CSS files.
 
 __Arguments__
 
- * options - Options for CSSLint.
+ * options.config - Options for CSSLint.
 
 __Example__
 

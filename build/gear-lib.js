@@ -24108,7 +24108,8 @@ var linter = require('csslint').CSSLint;
 /**
  * Lint CSS.
  *
- * @param options {Object} CSSLint options.
+ * @param options {Object} Task options.
+ * @param options.config {Object} CSSLint options.
  * @param options.callback {Function} Callback on lint status.
  * @param blob {Object} Incoming blob.
  * @param done {Function} Callback on task completion.
@@ -24116,23 +24117,10 @@ var linter = require('csslint').CSSLint;
 exports.csslint = function(options, blob, done) {
     options = options || {};
 
-    var result,
-        callback = options.callback,
-        errors,
-        linted;
-    
-    delete options.callback; //clear the callback from the options
+    var result = linter.verify(blob.result, options.config || null), // Cast buffer to string
+        linted = result.messages.length ? new blob.constructor(blob, {csslint: result.messages}) : blob;
 
-    if (Object.keys(options).length === 0) {
-        //If no options, set to null to get csslint's defaults
-        options = null;
-    }
-
-    result = linter.verify(blob.result, options); // Cast buffer to string
-    errors = result.messages.map(function(err) {return err.message;});
-    linted = errors ? new blob.constructor(blob, {csslint: errors}) : blob;
-
-    done(callback ? callback(linted) : null, linted);
+    done(options.callback ? options.callback(linted) : null, linted);
 };
 
 
@@ -24184,24 +24172,21 @@ var linter = require('jslint/lib/linter');
 /**
  * Lint JS.
  *
- * @param options {Object} JSLint options.
- * @param options.callback {Function} Callback on lint status.
+ * @param options {Object} Task options.
+ * @param options.config {Object} JSLint options.
+ * @param options.callback {Function} Callback on lint status. Callback can return non-null to end queue.
  * @param blob {Object} Incoming blob.
  * @param done {Function} Callback on task completion.
  */
-exports.jslint = function(options, blob, done) {
+exports.jslint = function (options, blob, done) {
     options = options || {};
 
-    var result = linter.lint(blob.result, options),
-        errors = result.errors.map(function(err) {
-            return err ? 'line ' + err.line + ' character ' + err.character + ': ' + err.reason : null;
-        }).filter(function(err) { // Filter nulls
-            return err;
-        }),
-        linted = errors ? new blob.constructor(blob, {jslint: errors}) : blob;
+    var result = linter.lint(blob.result, options.config || {}),
+        linted = result.errors ? new blob.constructor(blob, {jslint: result.errors}) : blob;
 
     done(options.callback ? options.callback(linted) : null, linted);
 };
+
 
 });
 
@@ -24220,15 +24205,20 @@ var parser = require('uglify-js').parser,
 /**
  * Minify JS.
  *
- * @param options {Object} Minify options.
+ * @param options {Object} Task options.
+ * @param options.config {Object} Minify options.
  * @param blob {Object} Incoming blob.
  * @param done {Function} Callback on task completion.
  */
 exports.jsminify = function(options, blob, done) {
     options = options || {};
+
+    var config = options.config || {},
+        ast;
+
     try {
-        var ast = parser.parse(blob.result, options.semicolon || false);
-        done(null, new blob.constructor(uglify.gen_code(ast, options), blob));
+        ast = parser.parse(blob.result, config.semicolon || false);
+        done(null, new blob.constructor(uglify.gen_code(ast, config), blob));
     } catch (e) {
         this._log(e);
         done('Minify failed, ' + (blob.name || 'file') + ' unparseable');
