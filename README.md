@@ -38,6 +38,8 @@ new Queue({registry: new Registry({module: 'gear-lib'})})
  * [jsminify](#jsminify)
  * [csslint](#csslint)
  * [cssminify](#cssminify)
+ * [less](#cssminify)
+ * [replace](#replace)
  * [s3](#s3)
 
 ## Tasks
@@ -88,13 +90,14 @@ __Arguments__
 __Example__
 
 ```javascript
-.csslint()
+.csslint({config: {'duplicate-properties': true}})
 ```
 
 ---------------------------------------
 
 <a name="cssminify" />
 ### cssminify()
+### Aliased as less()
 
 Minify CSS files.
 
@@ -102,6 +105,36 @@ __Example__
 
 ```javascript
 .cssminify()
+
+// Parse LESS stylesheets without minifying
+.less({compress: false})
+```
+
+---------------------------------------
+
+<a name="replace" />
+### replace()
+
+Replace strings using RegExp.
+
+__Arguments__
+
+ * options.regex - RegExp object or string.
+ * options.flags - RegExp flags if using string.
+
+__Example__
+
+```javascript
+.replace({
+    regex: "Y.log\\(.+?\\);?",
+    replace: '',
+    flags: 'mg'
+})
+
+.replace({
+    regex: /Y.log\(.+?\);?/mg,
+    replace: ''
+})
 ```
 
 ---------------------------------------
