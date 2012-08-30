@@ -5,7 +5,7 @@ var Blob = require('gear').Blob,
         postfix: '\n}\n',
         stamp: new Blob('var foo = 5;'),
         stamped: 'function() {\nvar foo = 5;\n}\n',
-        replaced: 'function() {\nvar foo = 7;\n}\n',
+        replaced: 'function() {\nvar foo = 7;\n}\n'
     };
 
 describe('stamp()', function() {
