@@ -7,56 +7,70 @@
 /*
  * Bootstraps browser based Gear.js library tasks.
  */
-var gear = require('gear'),
+var fs = require('fs'),
+    gear = require('gear'),
     handlebars = require('handlebars'),
-    wrap = handlebars.compile(
+    LINT_CONFIG = {
+        nomen: true,
+        sloppy: true,
+        white: true,
+        vars: true
+    },
+    WRAP = handlebars.compile(
         "\n\ndefine('{{name}}', ['require', 'exports'{{#modules}}, '{{.}}'{{/modules}}], function(require, exports{{#input}}, {{.}}{{/input}}) {\n\n" +
         "{{{result}}}\n\n" +
         "});\n\n"
     ),
-    helper = handlebars.compile(
+    EXPORTS = handlebars.compile(
         "define('gear-lib', ['require', 'exports'{{#tasks}}, '{{.}}'{{/tasks}}], function(require, exports) {\n" +
         "var tasks = [];\n" +
         "{{#tasks}}tasks.push(require('{{.}}'));{{/tasks}}\n" +
         "tasks.forEach(function(mod) {for (var task in mod) {exports[task] = mod[task];}});\n" +
         "});\n\n"
     ),
-    files = {
-        'vendor/csslint.js': {},
-        'vendor/less.js': {},
-        'vendor/jslint.js': {},
-        'vendor/uglify.js': {},
-        'vendor/handlebars.js': {},
-        'lib/csslint.js': {name: 'gear-csslint', modules: ['csslint'], task: true},
-        'lib/cssminify.js': {name: 'cssminify', modules: ['less'], task: true},
-        'lib/jslint.js': {name: 'gear-jslint', modules: ['jslint/lib/linter'], task: true},
-        'lib/jsminify.js': {name: 'jsminify', modules: ['uglify-js'], task: true},
-        'lib/handlebars.js': {name: 'gear-handlebars', modules: ['handlebars'], task: true}
+    DEPENDENCIES = fs.readdirSync('vendor').filter(function(f) {
+            return f[0] !== '.';
+        }).map(function(f) {
+            return 'vendor/' + f;
+        }),
+    LIB = {
+        'lib/csslint.js': {name: 'gear-csslint', modules: ['csslint']},
+        'lib/cssminify.js': {name: 'cssminify', modules: ['less']},
+        'lib/jslint.js': {name: 'gear-jslint', modules: ['jslint/lib/linter']},
+        'lib/jsminify.js': {name: 'jsminify', modules: ['uglify-js']},
+        'lib/handlebars.js': {name: 'gear-handlebars', modules: ['handlebars']},
+        'lib/replace.js': {name: 'gear-replace', modules: []},
+        'lib/stamp.js': {name: 'gear-stamp', modules: []}
     },
-    tasks = [];
-
-for (var key in files) {if (files[key].task) {tasks.push(files[key].name);}}
+    TASKS = Object.keys(LIB);
 
 new gear.Queue({registry: new gear.Registry({dirname: __dirname + '/lib/'})})
-    .read(Object.keys(files))
-    .load(helper({tasks: tasks}))
-    .jslint({nomen: true, sloppy: true, white: true, vars: true, callback: function(blob) {
-        //console.log(blob.name ? blob.name : 'inline', blob.jslint);
-    }})
-    .concat({callback: function(blob) {
-        if (blob.name in files && files[blob.name].name) {
-            var obj = files[blob.name];
-            var vars = {result: blob.result, modules: []};
-            Object.keys(obj).forEach(function(attr) {vars[attr] = obj[attr];});
-            //Object.keys(vars.modules).forEach(function(attr) {vars.paths[attr] = obj[attr];});
-            return wrap(vars);
-        }
-        return blob.result;
-    }})
     .tasks({
-        dev:     {task: ['write', 'build/gear-lib.js']},
-        prodmin: {task: 'jsminify'},
-        prod:    {requires: 'prodmin', task: ['write', 'build/gear-lib.min.js']},
+        deps:  {task: ['read', DEPENDENCIES]},
+
+        tasks: {task: ['read', TASKS]},
+        lint:  {task: ['jslint', {config: LINT_CONFIG, callback: function(blob) {
+            if (blob.jslint.length) {
+                console.log(blob.jslint);
+            }
+        }}], requires: 'tasks'},
+
+        inline: {task: ['load', EXPORTS({tasks: TASKS})], requires: ['deps', 'lint']},
+        concat: {task: ['concat', {callback: function(blob) {
+            if (blob.name in LIB) {
+                var obj = LIB[blob.name];
+                var vars = {result: blob.result, modules: []};
+                Object.keys(obj).forEach(function(attr) {vars[attr] = obj[attr];});
+                return WRAP(vars);
+            }
+            return blob.result;
+        }}], requires: 'inline'},
+
+        dev:     {task: ['write', 'build/gear-lib.js'], requires: 'concat'},
+        
+        prodmin: {task: 'jsminify', requires: 'concat'},
+        prod:    {task: ['write', 'build/gear-lib.min.js'], requires: 'prodmin'},
+        
         join:    {requires: ['dev', 'prod']}
     })
     .run(function(err, results) {
