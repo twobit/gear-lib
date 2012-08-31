@@ -24333,9 +24333,9 @@ exports.stamp = function(options, blob, done) {
 
 });
 
-define('gear-lib', ['require', 'exports', 'lib/csslint.js', 'lib/cssminify.js', 'lib/jslint.js', 'lib/jsminify.js', 'lib/handlebars.js', 'lib/replace.js', 'lib/stamp.js'], function(require, exports) {
+define('gear-lib', ['require', 'exports', 'gear-csslint', 'cssminify', 'gear-jslint', 'jsminify', 'gear-handlebars', 'gear-replace', 'gear-stamp'], function(require, exports) {
 var tasks = [];
-tasks.push(require('lib/csslint.js'));tasks.push(require('lib/cssminify.js'));tasks.push(require('lib/jslint.js'));tasks.push(require('lib/jsminify.js'));tasks.push(require('lib/handlebars.js'));tasks.push(require('lib/replace.js'));tasks.push(require('lib/stamp.js'));
+tasks.push(require('gear-csslint'));tasks.push(require('cssminify'));tasks.push(require('gear-jslint'));tasks.push(require('jsminify'));tasks.push(require('gear-handlebars'));tasks.push(require('gear-replace'));tasks.push(require('gear-stamp'));
 tasks.forEach(function(mod) {for (var task in mod) {exports[task] = mod[task];}});
 });
 

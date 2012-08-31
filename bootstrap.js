@@ -42,13 +42,13 @@ var fs = require('fs'),
         'lib/replace.js': {name: 'gear-replace', modules: []},
         'lib/stamp.js': {name: 'gear-stamp', modules: []}
     },
-    TASKS = Object.keys(LIB);
+    TASKS = Object.keys(LIB).map(function(f) {return LIB[f].name;});
 
 new gear.Queue({registry: new gear.Registry({dirname: __dirname + '/lib/'})})
     .tasks({
         deps:  {task: ['read', DEPENDENCIES]},
 
-        tasks: {task: ['read', TASKS]},
+        tasks: {task: ['read', Object.keys(LIB)]},
         lint:  {task: ['jslint', {config: LINT_CONFIG, callback: function(blob) {
             if (blob.jslint.length) {
                 console.log(blob.jslint);
