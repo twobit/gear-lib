@@ -1,6 +1,6 @@
 {
   "name": "gear-lib",
-  "version": "0.8.4",
+  "version": "0.8.5",
   "description": "Collection of common Gear.js tasks",
   "author": "Stephen Murphy <stephen@hypernaut.com>",
   "keywords": ["gear", "task", "build"],
@@ -18,7 +18,9 @@
       "less": "1.2.x",
       "handlebars": "1.0.x",
       "mime": "1.2.x",
-      "knox": "0.0.x"
+      "knox": "0.0.x",
+      "async": "0.1.x",
+      "glob": "3.1.x"
   },
   "devDependencies": {
       "should": "0.6.x",
