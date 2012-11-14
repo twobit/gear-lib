@@ -40,6 +40,7 @@ new Queue({registry: new Registry({module: 'gear-lib'})})
  * [cssminify](#cssminify)
  * [less](#cssminify)
  * [replace](#replace)
+ * [glob](#glob)
  * [s3](#s3)
 
 ## Tasks
@@ -135,6 +136,26 @@ __Example__
 .replace({
     regex: /Y.log\(.+?\);?/mg,
     replace: ''
+})
+```
+
+---------------------------------------
+
+<a name="glob" />
+### glob()
+
+Read files using wildcards. See (Glob package)[https://github.com/isaacs/node-glob]
+
+__Arguments__
+
+ * options.pattern - Glob pattern.
+ * options.options - Glob options.
+
+__Example__
+
+```javascript
+.glob({
+    pattern: "*.js"
 })
 ```
 
