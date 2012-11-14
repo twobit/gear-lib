@@ -144,7 +144,7 @@ __Example__
 <a name="glob" />
 ### glob()
 
-Read files using wildcards. See (Glob package)[https://github.com/isaacs/node-glob]
+Read files using wildcards. See [Glob package](https://github.com/isaacs/node-glob)
 
 __Arguments__
 
