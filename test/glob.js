@@ -25,11 +25,9 @@ describe('glob()', function() {
     });
     
     it('should support the `cwd` option', function(done) {
-        new Queue({registry: new Registry({tasks: { glob: glob }})})
-            .glob({ pattern : '**/*.js', options : { cwd : './test/fixtures' } })
-            .run(function(err, results) {
-                results[0].name.should.match(/test1.js$/);
-                done();
-            });
+        glob({ pattern : '**/*.js', options : { cwd : './test/fixtures' } }, [], function(err, results) {
+            results[0].name.should.match(/test1.js$/);
+            done(err);
+        });
     });
 });
