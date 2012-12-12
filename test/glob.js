@@ -4,13 +4,13 @@ var should = require('should'),
     glob = require('../lib/glob').glob,
     fixtures = {
         options: {pattern: 'ind*.js'},
-        expected: /index.js$/
+        expected: 'index.js'
     };
 
 describe('glob()', function() {
     it('should glob files', function(done) {
         glob(fixtures.options, [], function(err, results) {
-            results[0].name.should.match(fixtures.expected);
+            results[0].name.should.equal(fixtures.expected);
             done(err);
         });
     });
@@ -19,7 +19,7 @@ describe('glob()', function() {
         new Queue({registry: new Registry({tasks: {glob: glob}})})
             .glob(fixtures.options)
             .run(function(err, results) {
-                results[0].name.should.match(fixtures.expected);
+                results[0].name.should.equal(fixtures.expected);
                 done();
             });
     });
