@@ -23,4 +23,11 @@ describe('glob()', function() {
                 done();
             });
     });
+    
+    it('should support the `cwd` option', function(done) {
+        glob({ pattern : '**/*.js', options : { cwd : './test/fixtures' } }, [], function(err, results) {
+            results[0].name.should.match(/test1.js$/);
+            done(err);
+        });
+    });
 });
