@@ -3,9 +3,9 @@ var Blob = require('gear').Blob,
     less = require('../lib/cssminify').less,
     fixtures = {
         css: new Blob(' .bar { display: none;  } '),
-        min: '.bar{display:none;}\n',
+        min: '.bar{display:none}',
         less: new Blob('@color: #FF0;\ndiv { color: @color; }'),
-        compiled: 'div {\n  color: #ffff00;\n}\n'
+        compiled: 'div{color:#ff0}'
     };
 
 describe('cssminify()', function() {
