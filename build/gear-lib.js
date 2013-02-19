@@ -24147,14 +24147,18 @@ var less = require('less');
 exports.cssminify = exports.less = function(options, blob, done) {
     options = options || {};
 
-    var parser = new less.Parser(),
-        compress = options.compress !== false;
+    var parser = new less.Parser();
+
+    // Need to make sure to compress since we pass options directly through to Less
+    if (options.compress === undefined && options.yuicompress === undefined) {
+        options.compress = true;
+    }
 
     parser.parse(blob.result, function(err, tree) {
         if (err) {
             done(err);
         } else {
-            done(null, new blob.constructor(tree.toCSS({compress: compress}), blob));
+            done(null, new blob.constructor(tree.toCSS(options), blob));
         }
     });
 };
