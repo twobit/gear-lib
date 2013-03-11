@@ -1,5 +1,5 @@
 var Blob = require('gear').Blob,
-    replace = require('../lib/replace').replace,
+    replace = require('..').replace,
     fixtures = {
         js: new Blob("function (x) { Y.log('REMOVEME');}"),
         replaced: "function (x) { }",

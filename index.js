@@ -4,7 +4,7 @@
  * See the accompanying LICENSE file for terms.
  */
 var fs = require('fs'),
-    path = __dirname + '/lib/',
+    path = __dirname + (process.env.COVER ? '/lib-cov/' : '/lib/'),
     tasks = fs.readdirSync(path).filter(function(file) {return file.substr(-3) === '.js';});
 
 tasks.forEach(function(task) {

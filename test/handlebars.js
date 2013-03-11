@@ -1,5 +1,5 @@
 var Blob = require('gear').Blob,
-    handlebars = require('../lib/handlebars').handlebars,
+    handlebars = require('..').handlebars,
     fixtures = {
         tmpl: new Blob('test:{{test}}')
     };

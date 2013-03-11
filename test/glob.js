@@ -1,7 +1,7 @@
 var should = require('should'),
     Queue = require('gear').Queue,
     Registry = require('gear').Registry,
-    glob = require('../lib/glob').glob,
+    glob = require('..').glob,
     fixtures = {
         options: {pattern: 'ind*.js'},
         expected: 'index.js'

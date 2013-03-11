@@ -1,5 +1,5 @@
 var Blob = require('gear').Blob,
-    stamp = require('../lib/stamp').stamp,
+    stamp = require('..').stamp,
     fixtures = {
         prefix: 'function() {\n',
         postfix: '\n}\n',

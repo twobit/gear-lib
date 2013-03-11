@@ -1,5 +1,5 @@
 var Blob = require('gear').Blob,
-    jsminify = require('../lib/jsminify').jsminify,
+    jsminify = require('..').jsminify,
     fixtures = {
         js: new Blob('function   test(  x )  {console.log(x);;;;}'),
         min: 'function test(x){console.log(x);}\n',

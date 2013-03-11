@@ -1,6 +1,6 @@
 var Blob = require('gear').Blob,
-    cssminify = require('../lib/cssminify').cssminify,
-    less = require('../lib/cssminify').less,
+    cssminify = require('..').cssminify,
+    less = require('..').less,
     fixtures = {
         css: new Blob(' .bar { display: none;  } '),
         min: '.bar{display:none;}\n',

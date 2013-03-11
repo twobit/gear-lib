@@ -1,6 +1,6 @@
 var should = require('should'),
     Blob = require('gear').Blob,
-    csslint = require('../lib/csslint').csslint,
+    csslint = require('..').csslint,
     fixtures = {
         invalid: new Blob('%%%%'),
         options: new Blob('.foo {width: 0; width: 0;}')

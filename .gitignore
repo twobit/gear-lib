@@ -1,2 +1,4 @@
 node_modules
 testing
+lib-cov
+html-report

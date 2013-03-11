@@ -1,5 +1,5 @@
 var Blob = require('gear').Blob,
-    jslint = require('../lib/jslint').jslint,
+    jslint = require('..').jslint,
     fixtures = {
         invalid: new Blob('^^^^'),
         options: new Blob('function _blah() {}')
