@@ -1,9 +1,9 @@
 BIN = ./node_modules/.bin
 
-all: bootstrap test coverage
+all: browser test coverage
 
-bootstrap:
-	node bootstrap.js
+browser:
+	gear
 
 test:
 	npm test
