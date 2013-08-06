@@ -6,6 +6,8 @@ Useful tasks to lint, minify, and deploy assets.
 
 [![Build Status](https://secure.travis-ci.org/twobit/gear-lib.png)](http://travis-ci.org/twobit/gear-lib)
 
+[![NPM](https://nodei.co/npm/gear-lib.png?downloads=true)](https://nodei.co/npm/gear-lib/)
+
 ## Installation
 
 ```bash
