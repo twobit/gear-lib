@@ -2,7 +2,7 @@ var Blob = require('gear').Blob,
     jslint = require('..').jslint,
     fixtures = {
         invalid: new Blob('^^^^'),
-        options: new Blob('function _blah() {}')
+        options: new Blob('function _blah() {return 1; }')
     };
 
 describe('jslint()', function() {
