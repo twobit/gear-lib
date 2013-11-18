@@ -1,6 +1,6 @@
 {
   "name": "gear-lib",
-  "version": "0.8.10",
+  "version": "0.8.11",
   "description": "Collection of common Gear.js tasks",
   "author": "Stephen Murphy <stephen@hypernaut.com>",
   "keywords": ["gear", "task", "build"],

@@ -24135,7 +24135,8 @@ define('cssminify', ['require', 'exports', 'less'], function(require, exports) {
  * Copyrights licensed under the New BSD License.
  * See the accompanying LICENSE file for terms.
  */
-var less = require('less');
+var less = require('less'),
+    path = require('path');
 
 /**
  * Minify CSS. Also compiles LESS stylesheets.
@@ -24147,7 +24148,7 @@ var less = require('less');
 exports.cssminify = exports.less = function(options, blob, done) {
     options = options || {};
 
-    var parser = new less.Parser();
+    var parser = new less.Parser({paths: [path.dirname(blob.name)]});
 
     // Need to make sure to compress since we pass options directly through to Less
     if (options.compress === undefined && options.yuicompress === undefined) {
@@ -24158,10 +24159,15 @@ exports.cssminify = exports.less = function(options, blob, done) {
         if (err) {
             done(err);
         } else {
-            done(null, new blob.constructor(tree.toCSS(options), blob));
+            try {
+                done(null, new blob.constructor(tree.toCSS(options), blob));
+            } catch (exc) {
+                done(exc);
+            }
         }
     });
 };
+
 
 });
 
