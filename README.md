@@ -41,7 +41,6 @@ new Queue({registry: 'gear-lib'})
  * [csslint](#csslint)
  * [cssminify](#cssminify)
  * [less](#cssminify)
- * [replace](#replace)
  * [glob](#glob)
  * [s3](#s3)
 
@@ -112,33 +111,6 @@ __Example__
 
 // Compile LESS stylesheets without minifying
 .less({compress: false})
-```
-
----------------------------------------
-
-<a name="replace" />
-### replace()
-
-Replace strings using RegExp.
-
-__Arguments__
-
- * options.regex - RegExp object or string.
- * options.flags - RegExp flags if using string.
-
-__Example__
-
-```javascript
-.replace({
-    regex: "Y.log\\(.+?\\);?",
-    replace: '',
-    flags: 'mg'
-})
-
-.replace({
-    regex: /Y.log\(.+?\);?/mg,
-    replace: ''
-})
 ```
 
 ---------------------------------------
