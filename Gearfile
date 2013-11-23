@@ -1,6 +1,6 @@
 (function() {
     console.log('Building gear-lib for the browser');
-    
+
     var fs = require('fs'),
         path = require('path'),
         gear = require(path.join(process.cwd(), 'node_modules/gear')),
@@ -33,9 +33,7 @@
             'lib/cssminify.js': {name: 'cssminify', modules: ['less']},
             'lib/jslint.js': {name: 'gear-jslint', modules: ['jslint/lib/linter']},
             'lib/jsminify.js': {name: 'jsminify', modules: ['uglify-js']},
-            'lib/handlebars.js': {name: 'gear-handlebars', modules: ['handlebars']},
-            'lib/replace.js': {name: 'gear-replace', modules: []},
-            'lib/stamp.js': {name: 'gear-stamp', modules: []}
+            'lib/handlebars.js': {name: 'gear-handlebars', modules: ['handlebars']}
         },
         TASKS = Object.keys(LIB).map(function(f) {return LIB[f].name;});
 
@@ -61,10 +59,10 @@
         }}], requires: 'inline'},
 
         dev:     {task: ['write', 'build/gear-lib.js'], requires: 'concat'},
-        
+
         prodmin: {task: 'jsminify', requires: 'concat'},
         prod:    {task: ['write', 'build/gear-lib.min.js'], requires: 'prodmin'},
-        
+
         join:    {requires: ['dev', 'prod']}
     };
 })()
