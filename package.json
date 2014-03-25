@@ -1,6 +1,6 @@
 {
   "name": "gear-lib",
-  "version": "0.8.12",
+  "version": "0.8.13",
   "description": "Collection of common Gear.js tasks",
   "author": "Stephen Murphy <stephen@hypernaut.com>",
   "keywords": ["gear", "task", "build"],
@@ -14,7 +14,7 @@
       "gear": ">= 0.8.x",
       "jslint": "0.2.x",
       "uglify-js": "1.3.x",
-      "csslint": "0.9.x",
+      "csslint": "0.10.x",
       "less": "1.3.x",
       "handlebars": "1.1.x",
       "mime": "1.2.x",
