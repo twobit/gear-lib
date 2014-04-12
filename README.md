@@ -37,6 +37,7 @@ new Queue({registry: 'gear-lib'})
 ### Tasks
 
  * [jslint](#jslint)
+ * [jshint](#jshint)
  * [jsminify](#jsminify)
  * [csslint](#csslint)
  * [cssminify](#cssminify)
@@ -59,6 +60,24 @@ __Example__
 
 ```javascript
 .jslint({config: {nomen: true}})
+```
+
+---------------------------------------
+
+<a name="jshint" />
+### jshint()
+
+Lint Javascript files.
+
+__Arguments__
+
+ * options.config - Options for JSHint.
+
+__Example__
+
+```javascript
+.jshint({config: {browser: true, eqeqeq: true}})
+.jshint({configFile: '.jshintrc'})
 ```
 
 ---------------------------------------
