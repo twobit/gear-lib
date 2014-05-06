@@ -14,7 +14,7 @@
       "gear": ">= 0.8.x",
       "jslint": "0.3.x",
       "jshint": "2.5.x",
-      "uglify-js": "1.3.x",
+      "uglify-js": "2.4.x",
       "csslint": "0.10.x",
       "less": "1.7.x",
       "handlebars": "2.0.x",
