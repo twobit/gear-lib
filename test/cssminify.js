@@ -3,8 +3,8 @@ var Blob = require('gear').Blob,
     less = require('..').less,
     fixtures = {
         css: new Blob(' .bar { display: none;  } '),
-        min: '.bar{display:none;}\n',
-        yuimin: '.bar{display:none}',
+        min: '.bar{display:none}',
+        cleancssmin: '.bar{display:none}',
         less: new Blob('@color: #FF0;\ndiv { color: @color; }'),
         compiled: 'div {\n  color: #ffff00;\n}\n'
     };
@@ -28,9 +28,9 @@ describe('cssminify()', function() {
 });
 
 describe('cssminify()', function() {
-    it('should minify css using yuicompress', function(done) {
-        cssminify({yuicompress: true}, fixtures.css, function(err, res) {
-            res.result.should.equal(fixtures.yuimin);
+    it('should minify css using cleancss', function(done) {
+        cssminify({cleancss: true}, fixtures.css, function(err, res) {
+            res.result.should.equal(fixtures.cleancssmin);
             done(err);
         });
     });
