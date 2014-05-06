@@ -20,7 +20,7 @@
       "handlebars": "2.0.x",
       "mime": "1.2.x",
       "knox": "0.8.x",
-      "async": "0.2.x",
+      "async": "0.8.x",
       "glob": "3.2.x"
   },
   "devDependencies": {
