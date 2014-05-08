@@ -24271,20 +24271,10 @@ define('jsminify', ['require', 'exports', 'uglify-js'], function(require, export
  * Copyrights licensed under the New BSD License.
  * See the accompanying LICENSE file for terms.
  */
-var parser = require('uglify-js').parser,
-    uglify = require('uglify-js').uglify;
+var UglifyJS = require('uglify-js');
 
 /**
  * Minify JS.
- *
- * Issue: we need to preserve license comments which is still an open issue in uglify-js:
- * https://github.com/mishoo/UglifyJS/pull/332
- *
- * Fix based on the Ender workaround here:
- * https://github.com/ender-js/Ender/blob/76961673be2a29e893d8d3dc9b97e3faf8b169a6/lib/ender.file.js#L25-58
- * Ender is licensed under MIT - copyright 2012 Dustin Diaz & Jacob Thornton
- * http://ender.no.de/
- *
  *
  * @param options {Object} Task options.
  * @param options.config {Object} Minify options.
@@ -24295,48 +24285,31 @@ exports.jsminify = function (options, blob, done) {
     options = options || {};
 
     var config = options.config || {},
-        comments = [],
-        token = '"jsminify task: preserved comment block"',
-        reMultiComments = /\/\*![\s\S]*?\*\//g,
-        reTokens = new RegExp(token, 'g'),
-        source = blob.result,
-        ast;
+        source = blob.result;
+    
+    config.fromString = true;
+
+    if (config.output === undefined) {
+        config.output = {};
+    }
+
+    // We need to preserve license comments which is still not crystal-clear in uglify-js doc:
+    // https://github.com/mishoo/UglifyJS2/issues/82
+    if (config.output.comments === undefined) {
+        config.output.comments = /@license|@preserve|@cc_on|^!\n/i;
+    }
 
     try {
-        source = source.replace(reMultiComments, function (comment) {
-            comments.push(comment);
-            return ';' + token + ';';
-        });
+        source = UglifyJS.minify(source, config).code;
+        done(null, new blob.constructor(source, blob));
 
-        ast = parser.parse(source, config.semicolon || false);
-
-        if (config.mangle) {
-            ast = uglify.ast_mangle(ast, config);
-        }
-        if (config.squeeze) {
-            ast = uglify.ast_squeeze(ast, config);
-        }
-
-        source = uglify.gen_code(ast, config);
-
-        source = source.replace(reTokens, function () {
-            return '\n' + comments.shift() + '\n';
-        });
-
-        if (source.substr(source.length - 1) === ')') {
-            source += ';';
-        }
-        source += '\n';
     } catch (e) {
         if (options.callback) {
             options.callback(e);
         }
 
         done('Minify failed, ' + (blob.name || 'file') + ' unparseable.\nException:\n' + JSON.stringify(e));
-        return;
     }
-
-    done(null, new blob.constructor(source, blob));
 };
 
 
