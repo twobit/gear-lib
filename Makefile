@@ -2,6 +2,9 @@ BIN = ./node_modules/.bin
 
 all: browser test coverage
 
+install:
+	npm link gear-lib
+
 browser:
 	-$(BIN)/browserify lib/index.js -s GearLib -o build/gear-lib.js
 	-@$(BIN)/gear #npm link gear-lib
