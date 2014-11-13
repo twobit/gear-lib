@@ -5,7 +5,7 @@ var fs = require('fs'),
     tasks = require('..'),
     Queue = gear.Queue,
     Registry = gear.Registry,
-    registry = new Registry({ tasks: tasks }),
+    registry = new Registry({tasks: tasks}),
     fixtures = {
         dest: 'testing',
 
@@ -47,7 +47,7 @@ describe('dest()', function() {
     });
 
     it('should move a single file to a destination', function(done) {
-        new Queue({ registry: registry })
+        new Queue({registry: registry})
             .read(fixtures.file)
             .dest(fixtures.dest)
             .run(function(err) {
@@ -57,7 +57,7 @@ describe('dest()', function() {
     });
 
     it('should move multiple files to a destination', function(done) {
-        new Queue({ registry: registry })
+        new Queue({registry: registry})
             .glob(fixtures.files)
             .dest(fixtures.dest)
             .run(function(err) {
@@ -67,9 +67,9 @@ describe('dest()', function() {
     });
 
     it('should move files to a destination with base dir', function(done) {
-        new Queue({ registry: registry })
+        new Queue({registry: registry})
             .glob(fixtures.files)
-            .dest({ dir: fixtures.dest, base: fixtures.base })
+            .dest({dir: fixtures.dest, base: fixtures.base})
             .run(function(err) {
                 fs.readdirSync(fixtures.baseDest).should.eql(fixtures.expectFiles);
                 done(err);
