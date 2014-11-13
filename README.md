@@ -44,6 +44,7 @@ new Queue({registry: 'gear-lib'})
  * [less](#cssminify)
  * [glob](#glob)
  * [s3](#s3)
+ * [dest](#dest)
 
 ## Tasks
 
@@ -175,4 +176,29 @@ __Example__
     secret: '<secret>',
     bucket: 'gearjs'
  }})
+```
+
+---------------------------------------
+
+<a name="dest">
+### dest()
+
+Move one or more files to a destination.
+
+__Arguments__
+
+ * options.dir - File destination.
+ * options.base - Base path for incoming files.
+ * options.encoding - File encoding.
+
+__Example__
+
+```javascript
+.dest('path/of/destination')
+
+// With more options
+.dest({
+  dir: 'path/of/destination',
+  base: 'path/of'
+})
 ```
