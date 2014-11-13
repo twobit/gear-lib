@@ -142,6 +142,7 @@ Read files using wildcards. See [Glob package](https://github.com/isaacs/node-gl
 __Arguments__
 
  * options.pattern - Glob pattern.
+ * options.limit - Limit the amount of concurrently opened files.
  * options.options - Glob options.
 
 __Example__
